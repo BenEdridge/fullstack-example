@@ -1,0 +1,8 @@
+[sources.in]
+  type = "docker" # required
+
+[sinks.out]
+  inputs = ["in"]
+  type = "elasticsearch"
+  host = "http://elasticsearch:9200"
+  index = "vector-%Y-%m-%d"

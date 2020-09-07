@@ -1,0 +1,4 @@
+# https://www.elastic.co/guide/en/elasticsearch/reference/current/settings.html
+
+# discovery.zen.minimum_master_nodes: 1
+# network.host: 0.0.0.0

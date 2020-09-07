@@ -1,0 +1,8 @@
+.git
+.gitignore
+.nvmrc
+
+#ignore all readme files
+**/*.md
+**/*.MD
+**/LICENSE
