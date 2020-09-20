@@ -1,0 +1,17 @@
+# https://www.elastic.co/guide/en/logstash/current/logstash-settings-file.html
+
+pipeline:
+  workers: 1
+  batch:
+    size: 5
+    delay: 50
+
+config:
+  debug: true
+
+# queue:
+#   type: memory
+
+log:
+  # level: debug
+  format: json

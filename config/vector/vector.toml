@@ -1,5 +1,6 @@
 [sources.in]
   type = "docker" # required
+  include_containers = ["api", "gateway", "kibana", "db"]
 
 [sinks.out]
   inputs = ["in"]
