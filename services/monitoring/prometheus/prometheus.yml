@@ -8,10 +8,10 @@ scrape_configs:
     static_configs:
       - targets: ["otel-collector:8889"]
       - targets: ["otel-collector:8888"]
-  - job_name: "coreDNS"
+  - job_name: "dns"
     scrape_interval: 10s
     static_configs:
-      - targets: ["coredns:9153"]
+      - targets: ["dns:9153"]
   - job_name: Kong Gateway
     scrape_interval: 5s
     static_configs:
