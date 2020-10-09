@@ -1,5 +1,16 @@
 version: "3.8"
 services:
+  ################################
+  # Docker Registry
+  ##################################
+  registry:
+    hostname: registry
+    domainname: test
+    container_name: registry
+    image: registry:2.7.1
+    network_mode: "host" # Host here in OsX is the VM, in Linux it is the actual host...
+    # networks:
+    #   backend:
 
   ################################
   # DNS
@@ -178,10 +189,21 @@ services:
     command:
       - --config.file=/etc/prometheus/prometheus.yml
     volumes:
-      - ./services/monitoring/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - ./config/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:ro
     depends_on:
       - cadvisor
       - gateway
+    dns: 172.18.255.0
+    networks:
+      - backend
+
+  grafana:
+    image: grafana/grafana
+    hostname: grafana
+    domainname: test
+    container_name: grafana
+    ports:
+      - 3001:3000
     dns: 172.18.255.0
     networks:
       - backend
@@ -381,14 +403,24 @@ services:
       context: ./services/tshark/
       dockerfile: Dockerfile
     command: ["-i", "any", "-w", "./captures/capture.pcap"]
+    # command: ["-i", "any", "-w", "./captures/pipe"] # standard file output
+    # output to FIFO then pipe into wireshark
+    # command: [sh, -c, "rm -f ./captures/pipe && mkfifo ./captures/pipe && tshark -i any -w ./captures/pipe"]
     volumes:
       - ./services/tshark/captures/:/usr/src/app/captures/
+    # https://docs.docker.com/compose/compose-file/#network_mode
     network_mode: "host" # Host here in OsX is the VM, in Linux it is the actual host...
 
 volumes:
   database:
 
 networks:
+  backend-no-internet:
+    driver: bridge
+    driver_opts:
+      com.docker.network.bridge.enable_ip_masquerade: 'false'
+      # com.docker.network.bridge.enable_icc: 'false'
+    internal: true
   backend:
     driver: "bridge"
     ipam:
