@@ -1,4 +1,4 @@
-FROM alpine:3.12
-WORKDIR /usr/src/app
-RUN apk add --update --no-cache dnsmasq && rm -rf /var/cache/apk/*
-ENTRYPOINT [ "dnsmasq"]
+FROM coredns/coredns:1.7.1
+EXPOSE 53 53/udp
+ENTRYPOINT ["/coredns"]
+CMD ["-conf", "/etc/coredns/Corefile"]

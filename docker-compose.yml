@@ -15,34 +15,13 @@ services:
   ################################
   # DNS
   ################################
-  # dns:
-  #   hostname: dns
-  #   domainname: test
-  #   container_name: dns
-  #   build:
-  #     context: ./services/dns/
-  #     dockerfile: Dockerfile
-  #   # command: ["-k", "--except-interface=lo", "--bind-interfaces", "--interface=docker0"]
-  #   command: ["-k", "--log-queries"]
-  #   ports:
-  #     - 53:53/tcp
-  #     - 53:53/udp
-  #   volumes:
-  #     - ./config/dns/dnsmasq.conf:/etc/dns/dnsmasq.conf:ro
-  #   # network_mode: "host"
-  #   networks:
-  #     backend:
-  #       ipv4_address: 172.18.255.0
-  #   cap_add:
-  #     - NET_ADMIN
-
   dns:
     hostname: dns
     domainname: test
     container_name: dns
     build:
       context: ./services/dns/
-      dockerfile: DockerfileCoreDns
+      dockerfile: Dockerfile
     ports:
       - 5353:53/tcp
       - 5353:53/udp
