@@ -402,7 +402,11 @@ services:
     build:
       context: ./services/tshark/
       dockerfile: Dockerfile
-    command: ["-i", "any", "-w", "./captures/capture.pcap"]
+    
+    # Use the capture command below if required or run directly in the container using exec
+    command: ["--help"]
+    # command: ["-i", "any", "-w", "./captures/capture.pcap"]
+
     # command: ["-i", "any", "-w", "./captures/pipe"] # standard file output
     # output to FIFO then pipe into wireshark
     # command: [sh, -c, "rm -f ./captures/pipe && mkfifo ./captures/pipe && tshark -i any -w ./captures/pipe"]
