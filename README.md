@@ -18,6 +18,24 @@ docker-compose down --remove-orphans
 
 # What is Running?
 
+```
+IMAGE                                       NAMES               SIZE
+otel/opentelemetry-collector                otel-agent          0B (virtual 91.4MB)
+prom/prometheus:latest                      prometheus          0B (virtual 145MB)
+otel/opentelemetry-collector                otel-collector      0B (virtual 91.4MB)
+gcr.io/google-containers/cadvisor:latest    cadvisor            0B (virtual 185MB)
+jaegertracing/all-in-one:latest             jaeger              0B (virtual 47.4MB)
+kibana:7.9.1                                kibana              579kB (virtual 1.18GB)
+grafana/grafana                             grafana             487kB (virtual 181MB)
+redis:alpine                                redis-cadvisor      0B (virtual 32.1MB)
+fullstack-example_api                       api                 0B (virtual 135MB)
+elasticsearch:7.9.1                         elasticsearch       12.1MB (virtual 774MB)
+kong:alpine                                 gateway             22.4kB (virtual 147MB)
+timberio/vector:latest-alpine               vector              0B (virtual 80.7MB)
+postgres:13-alpine                          database            63B (virtual 158MB)
+registry:2.7.1                              registry            0B (virtual 26.2MB)
+```
+
 ## Kong Gateway Proxy
 
 http://localhost:8000  
