@@ -43,18 +43,17 @@ services:
     build:
       context: ./services/dns/
       dockerfile: DockerfileCoreDns
-    # command: ["-k", "--except-interface=lo", "--bind-interfaces", "--interface=docker0"]
     ports:
-      - 53:53/tcp
-      - 53:53/udp
+      - 5353:53/tcp
+      - 5353:53/udp
       - 9153:9153 # Prometheus metrics
     volumes:
       - ./config/dns/Corefile:/etc/coredns/Corefile:ro
     # network_mode: "host"
-    dns: [8.8.8.8, 1.1.1.1]
+    dns: [8.8.8.8, 1.1.1.1] # DNS forwarding to google and cloudflare
     networks:
       backend:
-        ipv4_address: 172.18.255.0
+        ipv4_address: 172.18.255.0 # Local DNS address for containers to use
     cap_add:
       - NET_ADMIN
 
