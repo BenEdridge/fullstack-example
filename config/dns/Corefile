@@ -1,0 +1,27 @@
+. {
+    log
+    errors
+    reload 10s
+    prometheus 0.0.0.0:9153
+    forward . 127.0.0.11 {
+      except test
+    }
+    trace http://jaeger:9411/api/v1/spans {
+      client_server
+    }
+    loop
+    debug
+}
+
+test {
+    log
+    reload 10s
+    prometheus 0.0.0.0:9153
+    forward . 127.0.0.11
+    trace http://jaeger:9411/api/v1/spans {
+      client_server
+    }
+    errors
+    loop
+    debug
+}
