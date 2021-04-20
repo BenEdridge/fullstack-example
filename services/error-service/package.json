@@ -1,0 +1,11 @@
+{
+  "name": "error-service",
+  "version": "1.0.0",
+  "description": "- timeouts - 400,500 - Missing responses - Malformed - HTTP errors - HTTPS errors",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}

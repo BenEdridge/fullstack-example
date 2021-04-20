@@ -65,6 +65,39 @@ services:
     networks:
       backend:
 
+  ################################
+  # Auth/LDAP/Login Portal
+  # https://github.com/authelia/authelia/blob/master/compose/local/setup.sh
+  ################################
+
+
+# https://hub.docker.com/r/freeipa/freeipa-server/
+
+  authelia:
+    container_name: authelia
+    hostname: authelia
+    domainname: test
+    image: authelia/authelia
+    volumes:
+      - ./config/authelia:/config
+    networks:
+      backend:
+    labels:
+      - 'traefik.enable=true'
+      - 'traefik.http.routers.authelia.rule=Host(`authelia.example.com`)'
+      - 'traefik.http.routers.authelia.entrypoints=https'
+      - 'traefik.http.routers.authelia.tls=true'
+      - 'traefik.http.routers.authelia.tls.options=default'
+      - 'traefik.http.middlewares.authelia.forwardauth.address=http://authelia:9091/api/verify?rd=https://authelia.example.com'
+      - 'traefik.http.middlewares.authelia.forwardauth.trustForwardHeader=true'
+      - 'traefik.http.middlewares.authelia.forwardauth.authResponseHeaders=Remote-User, Remote-Groups'
+    ports:
+      - 9091:9091
+    expose:
+      - 9091
+    dns: 172.18.255.0
+    restart: unless-stopped
+
   # kong-migration:
   #   image: kong:alpine
   #   command: "kong migrations bootstrap"

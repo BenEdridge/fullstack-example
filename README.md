@@ -73,3 +73,12 @@ http://localhost:3001
 ## Book API
 
 http://localhost:3000
+
+
+
+
+Look at authelia, keycloak, ory
+
+https://github.com/ory/hydra
+https://github.com/ory/kratos
+
