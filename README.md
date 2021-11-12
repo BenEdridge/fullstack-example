@@ -1,5 +1,12 @@
 # Getting Started
 
+## Why?
+
+There is a bit more to full stack development than a UI and backend API. 
+What about the gateway/proxy, distributed tracing, logging, metrics, visualisation and DNS.
+
+This is a collection of working tools to bring up a local example of the above using docker-compose.
+
 ```
 # Build container images
 docker-compose build
